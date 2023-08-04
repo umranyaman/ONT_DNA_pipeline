@@ -1,0 +1,22 @@
+# Set working directory
+workdir: "/home/MinaRyten/Vivian/NIID_Long_read/data" 
+
+#prefix of all output files:
+sample_name: "NIID_SA0185"
+
+# Reference genome as fasta
+genome: "/home/MinaRyten/Emil/references/GRCh38.primary_assembly.genome.fa"
+
+# Directory input data
+#fastq: "/home/data/230605_NIID_Mayo5/fastq_pass/"
+
+fastq: "/home/MinaRyten/Vivian/NIID_Long_read/"
+
+# Options passed to minimap2 (optional)
+minimap2_opts: ""
+
+# Options passed to sniffles
+sniffles_opts: "--minsvlen 50"
+
+# threads (optional; default:30)
+threads: 100
