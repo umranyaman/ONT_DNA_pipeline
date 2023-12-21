@@ -25,6 +25,7 @@ rule all:
 
 # --------------
 in_fastq = config["fastq"]
+aligned_bam = config["modBAM"]
 if not path.isabs(in_fastq):
     in_fastq = path.join(SNAKEDIR, in_fastq)
     assert os.path.exists(in_fastq)
@@ -103,4 +104,23 @@ rule sniffles:
 
     shell:"""
         sniffles -i {input.bam} -v {output.vcf} {params.sn_opts} --threads {threads}
+        """
+
+rule modkit:
+    input: 
+        bam = aligned_bam
+	ref = config["genome"]
+
+    output:
+        bed = path.join("modkit", f"{sample}.bed")
+
+    params:
+        sn_opts = config["modkit_opts"]
+
+    threads: config["threads"]
+
+    shell:"""
+	modkit pileup {input.bam} {output.bed} --ref {input.ref} --threads {threads} --preset traditional
+  	bgzip -c {output.bed} > {output.bed}.gz
+    	tabix -p bed {output.bed}.gz
         """
