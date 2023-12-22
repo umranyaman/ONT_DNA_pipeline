@@ -15,7 +15,8 @@ sample = config["sample_name"]
 
 target_list = [
     "mapping/" + sample + ".bam",
-    "sniffles/" + sample + ".vcf"
+    "sniffles/" + sample + ".vcf",
+    "modkit/" + sample + ".bed"
 ]
 
 
@@ -113,9 +114,6 @@ rule modkit:
 
     output:
         bed = path.join("modkit", f"{sample}.bed")
-
-    params:
-        sn_opts = config["modkit_opts"]
 
     threads: config["threads"]
 
