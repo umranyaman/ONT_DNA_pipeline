@@ -52,4 +52,6 @@ working directory
      |-- # output of minimap2 - aligned reads  
 |--- sniffles/  
      |-- # output of sniffles - vcf with SVs
+|--- modkit/
+     |-- # output of modkit - bedMethyl file
 ```
