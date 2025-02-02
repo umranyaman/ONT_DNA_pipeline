@@ -9,6 +9,7 @@ genome: "/path/to/genome.fa"
 
 # Directory input data
 fastq: "/directory/with/fastq/"
+aligned_bam: "/directory/with/aligned_modBAM/"
 
 # Options passed to minimap2 (optional)
 minimap2_opts: ""
