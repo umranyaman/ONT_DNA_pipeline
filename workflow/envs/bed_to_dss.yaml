@@ -1,0 +1,6 @@
+name: bed_to_dss
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas=2.2.*

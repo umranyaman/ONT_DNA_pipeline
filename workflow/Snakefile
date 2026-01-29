@@ -1,0 +1,71 @@
+import os
+import csv
+
+configfile: "config.yml"
+
+THREADS = int(config.get("threads", 30))
+REF     = config["genome"]
+OUTDIR  = config.get("outdir", "results")
+
+MOD_TYPE      = config.get("mod_type", "5mC")
+MODKIT_PRESET = config.get("modkit_preset", "traditional")
+MODKIT_EXTRA  = config.get("modkit_extra", "")
+MOD_CODE      = config.get("mod_code", "m")
+
+SAMPLESHEET = config["samplesheet"]
+
+def read_samplesheet(path):
+    rows = []
+    with open(path, newline="") as f:
+        r = csv.DictReader(f)
+        required = {"pool", "genotype", "sex", "batch", "bam", "bai"}
+        missing = required - set(r.fieldnames or [])
+        if missing:
+            raise ValueError(f"Samplesheet missing columns: {sorted(missing)}")
+
+        for row in r:
+            row = {k: (v.strip() if isinstance(v, str) else v) for k, v in row.items()}
+            for k in ("pool","genotype","sex","batch","bam","bai"):
+                if not row.get(k):
+                    raise ValueError(f"Missing {k} in row: {row}")
+            rows.append(row)
+    return rows
+
+SAMPLES = read_samplesheet(SAMPLESHEET)
+
+# lookup absolute BAM/BAI by (pool, genotype)
+LOOKUP = {}
+POOLS, GENOS = set(), set()
+for s in SAMPLES:
+    key = (s["pool"], s["genotype"])
+    if key in LOOKUP:
+        raise ValueError(f"Duplicate pool+genotype in samplesheet: {key}")
+    LOOKUP[key] = s
+    POOLS.add(s["pool"])
+    GENOS.add(s["genotype"])
+
+POOLS = sorted(POOLS)
+GENOS = sorted(GENOS)
+
+def in_bam(wc):
+    return LOOKUP[(wc.pool, wc.genotype)]["bam"]
+
+def in_bai(wc):
+    return LOOKUP[(wc.pool, wc.genotype)]["bai"]
+
+# IMPORTANT: output base as a WILDCARD STRING, not a function
+OUT_BASE = os.path.join(OUTDIR, "{pool}", "mod", MOD_TYPE, "{genotype}")
+
+ALL_DSS = expand(
+    os.path.join(OUTDIR, "{pool}", "mod", MOD_TYPE, "{genotype}", "DSS", f"{MOD_TYPE}.{{pool}}_{{genotype}}.dss.tsv"),
+    pool=POOLS,
+    genotype=GENOS
+)
+
+include: "rules/stage_bam.smk"
+include: "rules/modkit_pileup.smk"
+include: "rules/bed_to_dss.smk"
+
+rule all:
+    input:
+        ALL_DSS

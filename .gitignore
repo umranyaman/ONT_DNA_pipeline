@@ -1,0 +1,51 @@
+# Snakemake
+.snakemake/
+*.snakemake.log
+results/
+logs/
+benchmarks/
+resources/
+
+# Conda / envs
+.env/
+.venv/
+conda_envs/
+.micromamba/
+__pycache__/
+*.pyc
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Large / binary (never commit)
+*.bam
+*.bai
+*.cram
+*.crai
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.ubam
+*.sam
+*.bed
+*.bed.gz
+*.tbi
+*.vcf
+*.vcf.gz
+*.g.vcf.gz
+*.bcf
+*.fa
+*.fasta
+*.fna
+*.fai
+*.mmi
+*.rds
+*.h5
+*.hdf5
+
+# Reports / tmp
+tmp/
+scratch/

@@ -1,0 +1,10 @@
+samplesheet: "../data/samplesheet.csv"
+genome: "/home/DSUmranYaman/nano-methyl/BAM/merged/GRCm39.genome.fa"
+
+outdir: "results"
+threads: 30
+
+mod_type: "5mC"
+modkit_preset: "traditional"
+modkit_extra: "--cpg --modified-bases 5mC"
+mod_code: "m"
