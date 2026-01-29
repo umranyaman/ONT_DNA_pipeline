@@ -35,7 +35,6 @@ __pycache__/
 *.tbi
 *.vcf
 *.vcf.gz
-*.g.vcf.gz
 *.bcf
 *.fa
 *.fasta
