@@ -7,7 +7,3 @@ Pool3,AppNLGF,F,C,/merged_bams/barcode05_merged/aligned_sorted_barcode05_mm10.ba
 Pool3,WT,F,C,/merged_bams/barcode06_merged/aligned_sorted_barcode06_mm10.bam,/merged_bams/barcode06_merged/aligned_sorted_barcode06_mm10.bam.bai
 Pool4,WT,F,D,/merged_bams/barcode07_merged/aligned_sorted_barcode07_mm10.bam,/merged_bams/barcode07_merged/aligned_sorted_barcode07_mm10.bam.bai
 Pool4,AppNLGF,M,D,/merged_bams/barcode08_merged/aligned_sorted_barcode08_mm10.bam,/merged_bams/barcode08_merged/aligned_sorted_barcode08_mm10.bam.bai
-Pool5,AppNLGF,F,E,/merged_bams/barcode09_merged/aligned_sorted_barcode09_mm10.bam,/merged_bams/barcode09_merged/aligned_sorted_barcode09_mm10.bam.bai
-Pool5,WT,F,E,/merged_bams/barcode10_merged/aligned_sorted_barcode10_mm10.bam,/merged_bams/barcode10_merged/aligned_sorted_barcode10_mm10.bam.bai
-Pool6,WT,M,F,/merged_bams/barcode11_merged/aligned_sorted_barcode11_mm10.bam,/merged_bams/barcode11_merged/aligned_sorted_barcode11_mm10.bam.bai
-Pool6,AppNLGF,M,F,/merged_bams/barcode12_merged/aligned_sorted_barcode12_mm10.bam,/merged_bams/barcode12_merged/aligned_sorted_barcode12_mm10.bam.bai
