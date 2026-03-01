@@ -1,5 +1,5 @@
 samplesheet: "../data/samplesheet.csv"
-genome: "/home/DSUmranYaman/nano-methyl/BAM/merged/GRCm39.genome.fa"
+genome: "../BAM/merged/GRCm38.genome.fa"
 
 outdir: "results"
 threads: 30
